@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 /*GUIDE
  * 0... A 65
  * .0.. B 66
@@ -77,14 +78,17 @@ public class NotePosition : MonoBehaviour {
     public void OnGUI()
     {
 		//only fortesting, remove later
-        if (GUI.Button(new Rect(0, 0, 100, 50), "back")) Application.LoadLevel(0);
+        if (GUI.Button(new Rect(0, 0, 100, 50), "back")) {
+			// Application.LoadLevel(0);
+			SceneManager.LoadScene(0);
+		}
     }
     void Update () {
 		transform.Translate(-Vector3.forward*4*Time.deltaTime);
 		timer+=Time.deltaTime;
         if (timer - delay > source.clip.length) Debug.Log("ENDOFSONG");
-		if(!source.isPlaying && timer>delay && timer<source.clip.length)source.Play();
-		if(notes.Length-1<house)return;
-		if(house<timer*4)Chose(notes[house++]);
+		if (!source.isPlaying && timer>delay && timer<source.clip.length)source.Play();
+		if (notes.Length-1<house)return;
+		if (house<timer*4)Chose(notes[house++]);
 	}
 }
