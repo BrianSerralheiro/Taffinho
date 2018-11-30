@@ -14,7 +14,8 @@ public class EditorTrack : EditorWindow
 	private bool[] notes;
     private SelectMenu[] worlds;
     private string[] names;
-    private int index;
+    private string songname;
+	private int index;
 
     private AutoGenerator generator;
     private bool prevQ;
@@ -75,13 +76,15 @@ public class EditorTrack : EditorWindow
         menu = worlds[index];
         if (menu) id = EditorGUILayout.Popup(id, menu.Names());
 		EditorGUILayout.EndHorizontal();
-
-        song = (AudioClip)EditorGUILayout.ObjectField("Song", song, typeof(AudioClip), false);
-        /*GameObject g=null;
+		EditorGUILayout.BeginHorizontal();
+		song = (AudioClip)EditorGUILayout.ObjectField("Song", song, typeof(AudioClip), false);
+		songname=EditorGUILayout.TextField("Name:",songname);
+		EditorGUILayout.EndHorizontal();
+		/*GameObject g=null;
 		if(guitar)g=guitar.gameObject;
 		g=(GameObject)EditorGUILayout.ObjectField("Guitar",g, typeof(GameObject),true);
 		if(!guitar && g)guitar=g.GetComponent<NotePosition>();*/
-        if (audio.clip!=song && song){
+		if (audio.clip!=song && song){
 			notes=new bool[Mathf.FloorToInt(song.length)*4*4];
 			//Debug.Log("creating "+notes);
 			//guitar.pos=notes;
@@ -89,11 +92,11 @@ public class EditorTrack : EditorWindow
 		//EditorGUI.DrawPreviewTexture(new Rect(0,20,300,200),AssetPreview.GetAssetPreview(song));
 		audio.clip=song;
 		if(song){
-			EditorGUILayout.BeginHorizontal();
+			/*EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField(audio.clip.name);
 			EditorGUILayout.LabelField(audio.clip.length+" seconds");
 
-			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.EndHorizontal();*/
 		
 			
 			//GUILayout.BeginArea(new Rect(5, 40, (int)(position.width*0.8)-5, position.height-40));
@@ -122,11 +125,14 @@ public class EditorTrack : EditorWindow
 				if(GUILayout.Button("Copy")) EditorGUIUtility.systemCopyBuffer=Generate();
                 if (GUILayout.Button("Save")){
 					menu.song[id].notes= Generate();
-                    menu.song[id].name=song.name;
-					menu.song[id].song=song;
+                    menu.song[id].filename=song.name;
+                    menu.song[id].songname=songname;
+					menu.song[id].preview=song;
 					EditorUtility.SetDirty(menu);
 				}
-				if(GUILayout.Button("Load"))Debug.Log("Button not working now");
+				if(GUILayout.Button("Load")){
+					Debug.Log("Button not working now");
+				}
                 if (GUILayout.Button("Auto"))
                 {
                     generator.Start(audio, 8, notes);
@@ -274,7 +280,7 @@ public class EditorTrack : EditorWindow
 			s=s.Substring(0,i);
 		}
 
-		Debug.Log("gerado"+s);
+		//Debug.Log("gerado"+s);
 
 		return s;
 	}

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
 public class MusicInfo {
-	public string name;
+	public string filename;
+	public string songname;
 	public string notes;
-	public AudioClip song;
+	public AudioClip preview;
 	public int stars;
 	void Start () {
 		

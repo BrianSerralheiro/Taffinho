@@ -44,8 +44,9 @@ public class NotePosition : MonoBehaviour {
 				if(n==79 || n==68 || n==71 || n==73 || n==74 || n==76 || n==77 || n==78)Make(3);
 			}
 		}*/
-        song = music.song;
-        notes = music.notes;
+        song =Resources.Load<AudioClip>("/Audioclips/"+music.filename);
+
+		notes = music.notes;
 
 		source.clip=song;
 	}
@@ -75,6 +76,7 @@ public class NotePosition : MonoBehaviour {
 	}
     public void OnGUI()
     {
+		//only fortesting, remove later
         if (GUI.Button(new Rect(0, 0, 100, 50), "back")) Application.LoadLevel(0);
     }
     void Update () {

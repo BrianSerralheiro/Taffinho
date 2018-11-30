@@ -18,7 +18,7 @@ public class SelectMenu : MonoBehaviour {
         int y = Screen.height / 10;
         for (int i = 0; i < song.Length; i++)
         {
-            if (GUI.Button(new Rect(x * 3, y + i * y * 2, x * 4, y * 2), song[i].name, style))
+            if (GUI.Button(new Rect(x * 3, y + i * y * 2, x * 4, y * 2), song[i].filename, style))
             {
                 NotePosition.music = song[i];
                 SceneManager.LoadScene(1);
@@ -34,7 +34,7 @@ public class SelectMenu : MonoBehaviour {
             names = new string[song.Length];
             for(int i = 0; i < song.Length; i++)
             {
-                if (song[i].name != "" && song[i].name != null) names[i] = song[i].name;
+                if (song[i].filename != "" && song[i].filename != null) names[i] = song[i].filename;
                 else names[i] = "Vazio"+(i+1);
             }
         }
