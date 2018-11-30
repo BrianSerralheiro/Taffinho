@@ -131,8 +131,9 @@ public class EditorTrack : EditorWindow
 					EditorUtility.SetDirty(menu);
 				}
 				if(GUILayout.Button("Load")){
-					song=Resources.Load<AudioClip>(menu.song[id].filename);
+					song=Resources.Load<AudioClip>("Audioclips/"+menu.song[id].filename);
 					songname=menu.song[id].songname;
+					notes=generator.Load(menu.song[id].notes);
 
 				}
                 if (GUILayout.Button("Auto"))

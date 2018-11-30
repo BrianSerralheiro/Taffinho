@@ -10,10 +10,28 @@ public class AutoGenerator {
     private bool generating;
     public int id;
 
-    /*[Range(7, 10)]
+	/*[Range(7, 10)]
     public int bands;*/
-    // Use this for initialization
-    public void Start (AudioSource audio, int bands,bool[] note) {
+	// Use this for initialization
+
+	public bool[] Load(string s)
+	{
+		bool[] notes=new bool[s.Length*4];
+		for(int i=0;i<s.Length;i++){
+			int n=s[i];
+			if(n<=58) i+=n-49;
+			else
+			{
+				int j=i*4;
+				if(n==79 || n==65 || n==69 || n==70 || n==71 || n==75 || n==76 || n==77) notes[j]=true;
+				if(n==79 || n==66 || n==69 || n==72 || n==73 || n==75 || n==76 || n==78) notes[j+1]=true;
+				if(n==79 || n==67 || n==70 || n==72 || n==74 || n==75 || n==77 || n==78) notes[j+2]=true;
+				if(n==79 || n==68 || n==71 || n==73 || n==74 || n==76 || n==77 || n==78) notes[j+3]=true;
+			}
+		}
+		return notes;
+	}
+	public void Start (AudioSource audio, int bands,bool[] note) {
         source = audio;
         band = new float[bands];
         bools = new bool[bands];
