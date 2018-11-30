@@ -131,7 +131,9 @@ public class EditorTrack : EditorWindow
 					EditorUtility.SetDirty(menu);
 				}
 				if(GUILayout.Button("Load")){
-					Debug.Log("Button not working now");
+					song=Resources.Load<AudioClip>(menu.song[id].filename);
+					songname=menu.song[id].songname;
+
 				}
                 if (GUILayout.Button("Auto"))
                 {
