@@ -29,7 +29,7 @@ public class EditorTrack : EditorWindow
 		window.Show();
 	}
 	void OnEnable(){
-        worlds=(SelectMenu[])Object.FindSceneObjectsOfType(typeof(SelectMenu));
+        worlds=(SelectMenu[])Object.FindObjectsOfType(typeof(SelectMenu));
         names = new string[worlds.Length];
         for(int i = 0; i < worlds.Length; i++)
         {
