@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 public class EditorTrack : EditorWindow
 {
@@ -131,7 +132,7 @@ public class EditorTrack : EditorWindow
                     menu.song[id].filename=song.name;
                     menu.song[id].songname=songname;
 					menu.song[id].preview=songpreview;
-					EditorUtility.SetDirty(menu);
+					EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
 				}
 				if(GUILayout.Button("Load")){
 					song=Resources.Load<AudioClip>("Audioclips/"+menu.song[id].filename);
