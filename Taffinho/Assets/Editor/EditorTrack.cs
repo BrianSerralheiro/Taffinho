@@ -5,6 +5,7 @@ public class EditorTrack : EditorWindow
 {
 	public float slider;
 	public AudioClip song;
+	public AudioClip songpreview;
 	public static NotePosition guitar;
 	public SelectMenu menu;
 	public int id;
@@ -75,10 +76,12 @@ public class EditorTrack : EditorWindow
         index = EditorGUILayout.Popup(index, names);
         menu = worlds[index];
         if (menu) id = EditorGUILayout.Popup(id, menu.Names());
+		songname=EditorGUILayout.TextField("Name:",songname);
 		EditorGUILayout.EndHorizontal();
 		EditorGUILayout.BeginHorizontal();
 		song = (AudioClip)EditorGUILayout.ObjectField("Song", song, typeof(AudioClip), false);
-		songname=EditorGUILayout.TextField("Name:",songname);
+		songpreview = (AudioClip)EditorGUILayout.ObjectField("Preview", songpreview, typeof(AudioClip), false);
+
 		EditorGUILayout.EndHorizontal();
 		/*GameObject g=null;
 		if(guitar)g=guitar.gameObject;
@@ -127,12 +130,13 @@ public class EditorTrack : EditorWindow
 					menu.song[id].notes= Generate();
                     menu.song[id].filename=song.name;
                     menu.song[id].songname=songname;
-					menu.song[id].preview=song;
+					menu.song[id].preview=songpreview;
 					EditorUtility.SetDirty(menu);
 				}
 				if(GUILayout.Button("Load")){
 					song=Resources.Load<AudioClip>("Audioclips/"+menu.song[id].filename);
 					songname=menu.song[id].songname;
+					songpreview=menu.song[id].preview;
 					notes=generator.Load(menu.song[id].notes);
 
 				}
