@@ -28,6 +28,9 @@ public class CanvasController : MonoBehaviour
 //	####################################################################################################################
 
 	public static 	MonoBehaviour selectMenu;
+	public static MainMenu mainMenu;
+
+	public static WorldMenu worldMenu;
 
 //	####################################################################################################################
 //														Start ()
@@ -37,11 +40,20 @@ public class CanvasController : MonoBehaviour
 	{
 
 		selectMenu = GetComponent<SelectMenu> () as SelectMenu;
+		mainMenu = GetComponent<MainMenu> () as MainMenu;
+		worldMenu = GetComponent<WorldMenu> () as WorldMenu;
 
-		HideAllCanvasExcept (selectMenu);
+		HideAllCanvasExcept (mainMenu);
+		
 
 	}
 
+	public void switchMenu(int id)
+	{
+		mainMenu.enabled = 0 == id;
+		worldMenu.enabled = 1 == id;
+		selectMenu.enabled = 2 == id;
+	}
 //	####################################################################################################################
 //										Hide All Canvas Except (selectedCanvas)
 //	####################################################################################################################
@@ -56,7 +68,8 @@ public class CanvasController : MonoBehaviour
 	 * 									FAVOR MANTER A IDENTAÇÃO ALINHADA
 	 */
 
-	public static void HideAllCanvasExcept (MonoBehaviour selectedCanvas) {
+	public static void HideAllCanvasExcept (MonoBehaviour selectedCanvas) 
+	{
 
 		selectMenu.enabled 	= (selectMenu == selectedCanvas);
 
