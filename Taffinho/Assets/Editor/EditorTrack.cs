@@ -271,7 +271,7 @@ public class EditorTrack : EditorWindow
 				continue;}
 			if(!notes[i*4] && notes[i*4+1] && notes[i*4+2] && notes[i*4+3]){	s+="N";
 				continue;}
-			if(notes[i*4] && notes[i*4+1] && notes[i*4+2] && notes[i*4+3]){	s+="O";
+			if(notes[i*4] && notes[i*4+1] && notes[i*4+2] && notes[i*4+3]){		s+="O";
 				continue;}
 
 
