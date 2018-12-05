@@ -135,7 +135,7 @@ public class EditorTrack : EditorWindow
 					EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
 				}
 				if(GUILayout.Button("Load")){
-					song=Resources.Load<AudioClip>("Audioclips/"+menu.song[id].filename);
+					song=Resources.Load<AudioClip>("Songs/World 1"+menu.song[id].filename);
 					songname=menu.song[id].songname;
 					songpreview=menu.song[id].preview;
 					notes=generator.Load(menu.song[id].notes);
