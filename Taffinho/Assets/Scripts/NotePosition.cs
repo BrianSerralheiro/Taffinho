@@ -45,7 +45,7 @@ public class NotePosition : MonoBehaviour {
 				if(n==79 || n==68 || n==71 || n==73 || n==74 || n==76 || n==77 || n==78)Make(3);
 			}
 		}*/
-        song =Resources.Load<AudioClip>("Audioclips/"+music.filename);
+        song =Resources.Load<AudioClip>("Songs/World 1/"+music.filename);
 
 		notes = music.notes;
 
@@ -80,6 +80,7 @@ public class NotePosition : MonoBehaviour {
 		//only fortesting, remove later
         if (GUI.Button(new Rect(0, 0, 100, 50), "back")) {
 			// Application.LoadLevel(0);
+			CanvasController.defaultMenu=1;
 			SceneManager.LoadScene(0);
 		}
     }
