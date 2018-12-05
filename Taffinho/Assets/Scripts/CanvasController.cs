@@ -8,10 +8,13 @@ public class CanvasController : MonoBehaviour
 
 	public static WorldMenu worldMenu;
 
+	public static int defaultMenu = 0;
+
 	void Start ()
 	{
 		mainMenu = GetComponent<MainMenu> () as MainMenu;
-		worldMenu = GetComponent<WorldMenu> () as WorldMenu;	
+		worldMenu = GetComponent<WorldMenu> () as WorldMenu;
+		switchMenu(defaultMenu);
 	}
 
 	public void switchMenu(int id)

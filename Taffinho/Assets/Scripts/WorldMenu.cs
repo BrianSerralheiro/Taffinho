@@ -28,7 +28,7 @@ public class WorldMenu : MonoBehaviour
         WorldSelection.SetActive(false);
     }
 
-    void WorldSelect(int id)
+    public void WorldSelect(int id)
     {
         Worlds[id].gameObject.SetActive(true);
         //World is active, but object is disable.
