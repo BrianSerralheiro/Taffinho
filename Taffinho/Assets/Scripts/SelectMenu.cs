@@ -8,16 +8,15 @@ public class SelectMenu : MonoBehaviour
 	[SerializeField]
 	public MusicInfo[] song;
     private string[] names;
-    // Use this for initialization
-    public GUIStyle style;
 	void Start () 
     {
-        gameObject.SetActive(false);
+		gameObject.SetActive(false);
 	}
-        public void Select(int i)
+	public void Select(int i)
     {
-                NotePosition.music = song[i];
-                SceneManager.LoadScene(1);            
+		NotePosition.music = song[i];
+		NotePosition.world = name;
+		SceneManager.LoadScene(1);            
     }
 
     // Update is called once per frame

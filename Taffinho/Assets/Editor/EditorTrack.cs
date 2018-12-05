@@ -77,7 +77,20 @@ public class EditorTrack : EditorWindow
         index = EditorGUILayout.Popup(index, names);
         menu = worlds[index];
         if (menu) id = EditorGUILayout.Popup(id, menu.Names());
-		songname=EditorGUILayout.TextField("Name:",songname);
+		if(song!=null){
+			songname=EditorGUILayout.TextField("Name:",songname);
+		}else
+		{
+			if(GUILayout.Button("Load"))
+			{
+				song=Resources.Load<AudioClip>("Songs/"+menu.name+"/"+menu.song[id].filename);
+				songname=menu.song[id].songname;
+				//Debug.Log(menu.name);
+				songpreview=menu.song[id].preview;
+				audio.clip=song;
+				notes=generator.Load(menu.song[id].notes);
+			}
+		}
 		EditorGUILayout.EndHorizontal();
 		EditorGUILayout.BeginHorizontal();
 		song = (AudioClip)EditorGUILayout.ObjectField("Song", song, typeof(AudioClip), false);
@@ -135,11 +148,12 @@ public class EditorTrack : EditorWindow
 					EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
 				}
 				if(GUILayout.Button("Load")){
-					song=Resources.Load<AudioClip>("Songs/World 1"+menu.song[id].filename);
+					song=Resources.Load<AudioClip>("Songs/"+menu.name+"/"+menu.song[id].filename);
 					songname=menu.song[id].songname;
+					//Debug.Log(menu.name);
 					songpreview=menu.song[id].preview;
+					audio.clip=song;
 					notes=generator.Load(menu.song[id].notes);
-
 				}
                 if (GUILayout.Button("Auto"))
                 {

@@ -28,12 +28,9 @@ public class NotePosition : MonoBehaviour {
 	public float timer;
 	public float delay;
 	public int house;
-	public Text text;
 	public float Zpos;
-	[SerializeField]
-	public bool[] pos;
     public static MusicInfo music;
-	// Use this for initialization
+    public static string world;
 	void Start () {
         /*for(int i=0;i<notes.Length;i++){
 			int n=notes[i];
@@ -45,10 +42,8 @@ public class NotePosition : MonoBehaviour {
 				if(n==79 || n==68 || n==71 || n==73 || n==74 || n==76 || n==77 || n==78)Make(3);
 			}
 		}*/
-        song =Resources.Load<AudioClip>("Songs/World 1/"+music.filename);
-
+		song =Resources.Load<AudioClip>("Songs/"+world+"/"+music.filename);
 		notes = music.notes;
-
 		source.clip=song;
 	}
 	void Make(int i){
@@ -73,13 +68,13 @@ public class NotePosition : MonoBehaviour {
 		}
 		timer=0;
 		house=0;
-		notes=text.text;
 	}
     public void OnGUI()
     {
 		//only fortesting, remove later
         if (GUI.Button(new Rect(0, 0, 100, 50), "back")) {
 			// Application.LoadLevel(0);
+			CanvasController.defaultMenu=1;
 			SceneManager.LoadScene(0);
 		}
     }
