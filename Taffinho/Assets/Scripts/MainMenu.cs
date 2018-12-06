@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour 
 {
+
 	[SerializeField]
 	GameObject buttonGroup;
 	
 	// Use this for initialization
 	void Start () 
 	{
-		
+
 	}
 	
 	void OnEnabled()
@@ -25,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
 	// Update is called once per frame
 	void Update () 
-	{
-		
+	{    
+
 	}
 }
