@@ -18,6 +18,8 @@ public class EditorTrack : EditorWindow
     private string[] names;
     private string songname;
 	private int index;
+	private Vector2 anchor;
+	private int anchorstate;
 
     private AutoGenerator generator;
     private bool prevQ;
@@ -208,12 +210,28 @@ public class EditorTrack : EditorWindow
 			if(GUILayout.RepeatButton("\\/"))slider-=0.2f;
 			if(GUILayout.Button("\\/\n\\/"))slider-=20f;
 			if(GUILayout.Button("BOT"))slider=0f;
+			if(GUILayout.Button((anchorstate==0?"[":anchorstate==1?"]":"X"))){
+				if(anchorstate==0){
+					anchor.x=slider;
+					anchorstate=1;
+				}
+					else if(anchorstate==1){
+						anchor.y=slider;
+						anchorstate=2;
+					}
+						else anchorstate=0;
+			}
 			GUILayout.EndArea();
 
 			GUILayout.EndArea();
 
 			if(Event.current.type == EventType.ScrollWheel){
 				slider+=Event.current.delta.y/10;
+			}
+			if(anchorstate==2)
+			{
+				if(slider<anchor.x)slider=anchor.x;
+				if(slider>anchor.y)slider=anchor.x;
 			}
 			if(slider<0)slider=0;
             if (slider > song.length-1) slider=song.length-1;
