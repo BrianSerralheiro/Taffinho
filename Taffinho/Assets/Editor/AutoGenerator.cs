@@ -14,15 +14,16 @@ public class AutoGenerator {
     public int bands;*/
 	// Use this for initialization
 
-	public bool[] Load(string s)
+	public bool[] Load(string s,float f)
 	{
-		bool[] notes=new bool[s.Length*4];
+		bool[] notes=new bool[Mathf.FloorToInt(f)*4*4];
+		int z=0;
 		for(int i=0;i<s.Length;i++){
 			int n=s[i];
-			if(n<=58) i+=n-49;
+			if(n<=58) z+=n-49;
 			else
 			{
-				int j=i*4;
+				int j=(i+z)*4;
 				if(n==79 || n==65 || n==69 || n==70 || n==71 || n==75 || n==76 || n==77) notes[j]=true;
 				if(n==79 || n==66 || n==69 || n==72 || n==73 || n==75 || n==76 || n==78) notes[j+1]=true;
 				if(n==79 || n==67 || n==70 || n==72 || n==74 || n==75 || n==77 || n==78) notes[j+2]=true;

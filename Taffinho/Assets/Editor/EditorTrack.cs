@@ -88,7 +88,7 @@ public class EditorTrack : EditorWindow
 				//Debug.Log(menu.name);
 				songpreview=menu.song[id].preview;
 				audio.clip=song;
-				notes=generator.Load(menu.song[id].notes);
+				notes=generator.Load(menu.song[id].notes,song.length);
 			}
 		}
 		EditorGUILayout.EndHorizontal();
@@ -153,7 +153,7 @@ public class EditorTrack : EditorWindow
 					//Debug.Log(menu.name);
 					songpreview=menu.song[id].preview;
 					audio.clip=song;
-					notes=generator.Load(menu.song[id].notes);
+					notes=generator.Load(menu.song[id].notes,song.length);
 				}
                 if (GUILayout.Button("Auto"))
                 {
