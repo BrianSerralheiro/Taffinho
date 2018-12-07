@@ -4,6 +4,7 @@ using UnityEditor.SceneManagement;
 
 public class EditorTrack : EditorWindow
 {
+	#region variables
 	public float slider;
 	public AudioClip song;
 	public AudioClip songpreview;
@@ -27,6 +28,8 @@ public class EditorTrack : EditorWindow
 	private bool prevE;
 	private bool prevR;
 	Texture tex;
+	#endregion
+	#region Initialization
 	[MenuItem("Window/Track Generator")]
 	static void Init()
 	{
@@ -48,10 +51,9 @@ public class EditorTrack : EditorWindow
 		go.hideFlags = HideFlags.HideAndDontSave;
 		tex  = (Texture)EditorGUIUtility.Load("guitar bg.png");
         generator = new AutoGenerator();
-		//Guitargo=GameObject.Find("Guitar");
-		//guitar=Guitargo.GetComponent<NotePosition>();
-		//guitar.pos=notes;
 	}
+	#endregion
+
 	void OnInspectorUpdate()
 	{
 		Repaint();
@@ -72,10 +74,8 @@ public class EditorTrack : EditorWindow
             if(GUILayout.Button("Cancel")) generator.Cancel();
             return;
         }
-		//if(!guitar)guitar=Guitargo.GetComponent<NotePosition>();
-		//Guitargo= (GameObject)EditorGUILayout.ObjectField("go",Guitargo, typeof(GameObject),true);
+		#region Song info
 		EditorGUILayout.BeginHorizontal();
-        //menu= (SelectMenu)EditorGUILayout.ObjectField("Menu",menu, typeof(SelectMenu),true);
         index = EditorGUILayout.Popup(index, names);
         menu = worlds[index];
         if (menu) id = EditorGUILayout.Popup(id, menu.Names());
@@ -87,7 +87,6 @@ public class EditorTrack : EditorWindow
 			{
 				song=Resources.Load<AudioClip>("Songs/"+menu.name+"/"+menu.song[id].filename);
 				songname=menu.song[id].songname;
-				//Debug.Log(menu.name);
 				songpreview=menu.song[id].preview;
 				audio.clip=song;
 				notes=generator.Load(menu.song[id].notes,song.length);
@@ -99,30 +98,13 @@ public class EditorTrack : EditorWindow
 		songpreview = (AudioClip)EditorGUILayout.ObjectField("Preview", songpreview, typeof(AudioClip), false);
 
 		EditorGUILayout.EndHorizontal();
-		/*GameObject g=null;
-		if(guitar)g=guitar.gameObject;
-		g=(GameObject)EditorGUILayout.ObjectField("Guitar",g, typeof(GameObject),true);
-		if(!guitar && g)guitar=g.GetComponent<NotePosition>();*/
-		if (audio.clip!=song && song){
+		#endregion
+		if(audio.clip!=song && song){
 			notes=new bool[Mathf.FloorToInt(song.length)*4*4];
-			//Debug.Log("creating "+notes);
-			//guitar.pos=notes;
 		}
-		//EditorGUI.DrawPreviewTexture(new Rect(0,20,300,200),AssetPreview.GetAssetPreview(song));
 		audio.clip=song;
 		if(song){
-			/*EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField(audio.clip.name);
-			EditorGUILayout.LabelField(audio.clip.length+" seconds");
-
-			EditorGUILayout.EndHorizontal();*/
-		
-			
-			//GUILayout.BeginArea(new Rect(5, 40, (int)(position.width*0.8)-5, position.height-40));
-
-
 			if(notes!=null){
-				//GUILayout.Box(tex);
 				GUI.DrawTextureWithTexCoords(new Rect(5,40,(int)(position.width*0.8),400),tex,new Rect(0,slider/2,1,1));
 				GUILayout.Label((notes.Length/4).ToString());
 				for(int i=Mathf.Max(0,Mathf.CeilToInt(slider*4));i<Mathf.Min(notes.Length/4,Mathf.CeilToInt(slider*4)+8);i++){
@@ -130,16 +112,7 @@ public class EditorTrack : EditorWindow
 						notes[i*4+j]=GUI.Toggle(new Rect((int)(position.width*0.8)/8+(int)(position.width*0.8)/4*j,430+(slider*4*50)-50*i,60,25),notes[i*4+j],i+"-"+j);
 					}
 				}
-				//GUI.BeginScrollView(new Rect(0, notes.Length/6*400, (int)(position.width*0.8), 100),new Vector2(0,0),new Rect(0,0,(int)(position.width*0.8), position.height-40),false,true);
-				//GUI.BeginScrollView(new Rect(0, 40, (int)(position.width*0.8), position.height-40),new Vector2(0,(notes.Length/8*200)-(slider*4*100)),new Rect(0,0,(int)(position.width*0.8)-40, notes.Length/8*200));
-
-					//GUILayout.BeginArea(new Rect(0, notes.Length/6*400, (int)(position.width*0.8), 100));
-					//GUILayout.VerticalSlider(slider,song.length, 0.0F);
-						//GUILayout.EndArea();
-
-			
-				//GUI.EndScrollView();
-				/*----------------------------------------------------------BUTTONS AREA----------------------------------------------------*/
+				#region Buttons
 				GUILayout.BeginArea(new Rect((int)(position.width*0.8)+10, 100, (int)(position.width/10), 100));
 				if(GUILayout.Button("Copy")) EditorGUIUtility.systemCopyBuffer=Generate();
                 if (GUILayout.Button("Save")){
@@ -152,7 +125,6 @@ public class EditorTrack : EditorWindow
 				if(GUILayout.Button("Load")){
 					song=Resources.Load<AudioClip>("Songs/"+menu.name+"/"+menu.song[id].filename);
 					songname=menu.song[id].songname;
-					//Debug.Log(menu.name);
 					songpreview=menu.song[id].preview;
 					audio.clip=song;
 					notes=generator.Load(menu.song[id].notes,song.length);
@@ -173,8 +145,8 @@ public class EditorTrack : EditorWindow
                 }
 				GUILayout.EndArea();
 			}
-			//GUILayout.EndArea();
-			/*----------------------------------------------------------------- OPTIONS AREA------------------------------------------------------*/
+			#endregion
+			#region Adjustments
 			GUILayout.BeginArea(new Rect((int)(position.width*0.8), 40, (int)(position.width/5), position.height-40));
 			if(GUILayout.Button(audio.isPlaying?"Pause":"Play")){
 				if(audio.isPlaying)audio.Pause();
@@ -190,18 +162,18 @@ public class EditorTrack : EditorWindow
 				GUILayout.Label("Speed");
 				audio.pitch = GUILayout.HorizontalSlider(audio.pitch,0, 1);
 			EditorGUILayout.EndHorizontal();
-			
+			#endregion
 			EditorGUILayout.BeginHorizontal();
 				EditorGUILayout.Space();
 
 				slider=audio.time;
 				slider = GUILayout.VerticalSlider(slider,song.length-1, 0.0F);
 				if(slider>=song.length-1){
-					//slider=0;
 					audio.Pause();
 				}
 				audio.time=slider;
 			EditorGUILayout.EndHorizontal();
+			#region Slider Comands
 			/*---------------------------------------------------------------SKIP AREA-----------------------------------------------------------*/
 			GUILayout.BeginArea(new Rect(10, 200, (int)(position.width/20), position.height/2));
 			if(GUILayout.Button("TOP"))slider=song.length-2;
@@ -224,19 +196,25 @@ public class EditorTrack : EditorWindow
 			GUILayout.EndArea();
 
 			GUILayout.EndArea();
-
+			#endregion
 			if(Event.current.type == EventType.ScrollWheel){
 				slider+=Event.current.delta.y/10;
 			}
 			if(anchorstate==2)
 			{
+				if(anchor.x>anchor.y)
+				{
+					float a=anchor.x;
+					anchor.x=anchor.y;
+					anchor.y=a;
+				}
 				if(slider<anchor.x)slider=anchor.x;
 				if(slider>anchor.y)slider=anchor.x;
 			}
 			if(slider<0)slider=0;
             if (slider > song.length-1) slider=song.length-1;
 			audio.time=slider;
-			/*                                         END OPTIONS                                                     */
+			#region KeyBoard Controller
 			if(Event.current.type == EventType.keyDown){
 				int i=Mathf.Max(0,Mathf.CeilToInt(slider*4));
 				if(Event.current.keyCode == KeyCode.Q && !prevQ){
@@ -268,8 +246,8 @@ public class EditorTrack : EditorWindow
 					prevR=false;
 				
 			}
+			#endregion
 		}
-		//Editor.DrawPreview(new Rect(0,0,100,100));
 	}
 	string Generate(){
 		string s="";
@@ -319,8 +297,6 @@ public class EditorTrack : EditorWindow
 			if(char.IsLetter(s[i]))break;
 			s=s.Substring(0,i);
 		}
-
-		//Debug.Log("gerado"+s);
 
 		return s;
 	}
