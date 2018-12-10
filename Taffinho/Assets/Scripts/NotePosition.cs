@@ -25,39 +25,51 @@ public class NotePosition : MonoBehaviour {
 	public AudioClip song;
 	public AudioSource source;
 	public GameObject[] notas;
+	public GameObject[] prevGO;
 	public float timer;
 	public float delay;
 	public int house;
 	public float Zpos;
+	public int prevnote;
+	public Material mat;
     public static MusicInfo music;
     public static string world;
 	void Start () {
-        /*for(int i=0;i<notes.Length;i++){
-			int n=notes[i];
-			if(n<=58)print("Time out"+(n-48));
-			else {
-				if(n==79 || n==65 || n==69 || n==70 || n==71 || n==75 || n==76 || n==77)Make(0);
-				if(n==79 || n==66 || n==69 || n==72 || n==73 || n==75 || n==76 || n==78)Make(1);
-				if(n==79 || n==67 || n==70 || n==72 || n==74 || n==75 || n==77 || n==78)Make(2);
-				if(n==79 || n==68 || n==71 || n==73 || n==74 || n==76 || n==77 || n==78)Make(3);
-			}
-		}*/
 		song =Resources.Load<AudioClip>("Songs/"+world+"/"+music.filename);
 		notes = music.notes;
 		source.clip=song;
+		prevGO=new GameObject[4];
 	}
-	void Make(int i){
-		GameObject go=Instantiate(notas[i])as GameObject;
-		go.transform.parent=transform;
-		go.transform.localPosition=new Vector3(-3+i*2,0,house+Zpos);
+	void Make(int i,int n)
+	{
+		if(prevnote==n)
+		{
+			if(prevGO[i]){
+				TrailPart trail= prevGO[i].GetComponent<TrailPart>();
+				if(trail)trail.end=new Vector3(-3+i*2,0,house+Zpos);
+				else{
+					trail=prevGO[i].AddComponent<TrailPart>();
+					trail.end=new Vector3(-3+i*2,0,house+Zpos);
+					trail.mat=mat;
+				}
+			}
+		}
+		else{
+			GameObject go=Instantiate(notas[i])as GameObject;
+			go.transform.parent=transform;
+			go.transform.localPosition=new Vector3(-3+i*2,0,house+Zpos);
+			prevGO[i]=go;
+		}
+
 	}
 	void Chose(int n){
 		if(n<=58)Zpos+=n-49;
 		else {
-			if(n==79 || n==65 || n==69 || n==70 || n==71 || n==75 || n==76 || n==77)Make(0);
-			if(n==79 || n==66 || n==69 || n==72 || n==73 || n==75 || n==76 || n==78)Make(1);
-			if(n==79 || n==67 || n==70 || n==72 || n==74 || n==75 || n==77 || n==78)Make(2);
-			if(n==79 || n==68 || n==71 || n==73 || n==74 || n==76 || n==77 || n==78)Make(3);
+			if(n==79 || n==65 || n==69 || n==70 || n==71 || n==75 || n==76 || n==77)Make(0,n);
+			if(n==79 || n==66 || n==69 || n==72 || n==73 || n==75 || n==76 || n==78)Make(1,n);
+			if(n==79 || n==67 || n==70 || n==72 || n==74 || n==75 || n==77 || n==78)Make(2,n);
+			if(n==79 || n==68 || n==71 || n==73 || n==74 || n==76 || n==77 || n==78)Make(3,n);
+			prevnote=n;
 		}
 	}
 	public void Restart(){
