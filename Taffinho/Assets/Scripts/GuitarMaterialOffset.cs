@@ -9,7 +9,7 @@ public class GuitarMaterialOffset : MonoBehaviour {
 	/// It creates the effect of career grid sliding
 	/// </summary>
 	/// <param name="rendy">Renderer object</param>
-	/// <param name="speed">Public fixed speed adjusted at inspector</param>
+	/// <param name="speed">Public fixed speed adjusted in inspector</param>
 	/// <param name="offset">Times that renderer will update per second multiplied by speed</param>
 
 	private Renderer rendy;
