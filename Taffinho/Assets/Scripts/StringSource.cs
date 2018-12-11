@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Main Strings Class
 /// Public Static class that contains all in-game texts and strings
-/// Call by StringContainner.StringName to get it's values
+/// Call by StringSource.StringName to get it's values
 /// </summary>
 
 public static class StringSource {
