@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Teste : MonoBehaviour {
 
+	/// <summary>
+	/// Main Test Class
+	/// Everything here will NOT be at the final game
+	/// </summary>
+	/// <param name="tx">float that contain Screen.width</param>
+	/// <param name="ty">float that contain Screen.height</param> 
+
 	float tx;
 	float ty;
 	// Use this for initialization
