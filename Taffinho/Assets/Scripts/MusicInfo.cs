@@ -10,7 +10,7 @@ using UnityEngine;
 /// <param name="songname">Name of the Song</param>
 /// <param name="notes">Notes of the song</param>
 /// <param name="preview">Short of the music</param>
-/// <param name="stars">User score based on it's performance playing the song from 0 to 3</param>
+/// <param name="stars">Integer that define the difficult of the music</param>
 
 public class MusicInfo {
 
