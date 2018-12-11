@@ -24,8 +24,8 @@ public class CanvasController : MonoBehaviour
 
 	void Start ()
 	{
-		mainMenu 	= GetComponent<MainMenu> () as MainMenu;
-		worldMenu 	= GetComponent<WorldMenu> () as WorldMenu;
+		mainMenu 	= GetComponent<MainMenu> 	() as MainMenu;
+		worldMenu 	= GetComponent<WorldMenu> 	() as WorldMenu;
 		switchMenu	(defaultMenu);
 	}
 
