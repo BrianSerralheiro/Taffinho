@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 
 /// <summary>
-/// Classe that contains music info
+/// Class that contains music info
 /// </summary>
 /// <param name="filename">Name of the audio file</param>
 /// <param name="songname">Name of the Song</param>
