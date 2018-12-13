@@ -7,13 +7,11 @@ using UnityEngine;
 /// Public Static class that contains all in-game texts and strings
 /// Call by StringSource.StringName to get it's values
 /// </summary>
-
 public static class StringSource {
 
 /// <sumary>
 /// All Menu Strings Here
 /// </sumary>
-
 public static string menuStart		= "Começar Jogo";
 public static string menuTutorial	= "Como Jogar";
 public static string menuOptions	= "Opções";

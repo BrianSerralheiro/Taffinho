@@ -11,7 +11,6 @@ using UnityEngine;
 /// <param name="notes">Notes of the song</param>
 /// <param name="preview">Short of the music</param>
 /// <param name="stars">Integer that define the difficult of the music</param>
-
 public class MusicInfo {
 
 	public string filename;

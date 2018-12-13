@@ -10,15 +10,13 @@ public class Teste : MonoBehaviour {
 	/// </summary>
 	/// <param name="tx">float that contain Screen.width</param>
 	/// <param name="ty">float that contain Screen.height</param> 
-
 	float tx;
 	float ty;
-	// Use this for initialization
+
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		tx = Screen.width;
 		ty = Screen.height;
