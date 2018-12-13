@@ -12,7 +12,6 @@ public class CanvasController : MonoBehaviour
 	/// <param name="MainMenu">Object of Main Menu</param>
 	/// <param name="WorldMenu">Object of World Menu</param>
 	/// <param name="defaultMenu">Integer used to change menus at switchMenu </param>
-	
 	public static MainMenu 		mainMenu;
 	public static WorldMenu 	worldMenu;
 	public static int 			defaultMenu = 0;
@@ -21,7 +20,6 @@ public class CanvasController : MonoBehaviour
 	/// Initialization of Menu Objects
 	/// Get the component of the object as it
 	/// </summary>
-
 	void Start ()
 	{
 		mainMenu 	= GetComponent<MainMenu> 	() as MainMenu;
@@ -34,7 +32,6 @@ public class CanvasController : MonoBehaviour
 	/// enable states to true/false according to it's number compared to id param
 	/// </summary>
 	/// <param name="id">Param used to compare itself to menu magic number</param>
-
 	public void switchMenu(int id)
 	{
 		mainMenu.enabled 	= 0 	== id;

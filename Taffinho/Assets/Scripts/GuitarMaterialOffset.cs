@@ -11,7 +11,6 @@ public class GuitarMaterialOffset : MonoBehaviour {
 	/// <param name="rendy">Renderer object</param>
 	/// <param name="speed">Public fixed speed adjusted in inspector</param>
 	/// <param name="offset">Times that renderer will update per second multiplied by speed</param>
-
 	private Renderer rendy;
 	public float speed;
 	private float offset;
