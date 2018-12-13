@@ -28,9 +28,9 @@ public class NotePosition : MonoBehaviour {
 	/// Note Position Class
 	/// Creates and determine the notes position of the song
 	/// </summary>
-	/// <param id"notes"></param>
-	/// <param id"song"></param>
-	/// <param id"source"></param>
+	/// <param id"notes">String that will cointains the notes, according to the Guide</param>
+	/// <param id"song">Auduiclip that contains the song</param>
+	/// <param id"source">AudioSource object that will play the song</param>
 	/// <param id"notas"></param>
 	/// <param id"prevGo"></param>
 	/// <param id"timer"></param>
