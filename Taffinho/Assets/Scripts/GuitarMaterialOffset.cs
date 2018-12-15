@@ -32,7 +32,7 @@ public class GuitarMaterialOffset : MonoBehaviour {
 	/// </summary>
 	void Update () {
 		
-		offset = 0.01f * Time.time * speed;
+		offset += Time.deltaTime * speed;
 		rendy.material.SetTextureOffset ("_MainTex", new Vector2 (0, -offset));
 	}	
 }
