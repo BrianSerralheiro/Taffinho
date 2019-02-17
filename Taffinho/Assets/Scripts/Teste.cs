@@ -13,15 +13,14 @@ public class Teste : MonoBehaviour {
 	float tx;
 	float ty;
 
+	/// <summary>
+	/// Start tx and ty var
+	/// </summary>
 	void Start () {
-		
-	}
-	
-	void Update () {
 		tx = Screen.width;
 		ty = Screen.height;
-		
 	}
+	
 
 	void OnGUI() {
 
